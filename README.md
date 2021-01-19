@@ -15,8 +15,13 @@ To add the cogs to your instance please do: `[p]repo add StuxCogs https://github
 |-----------------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
 | Fun Badges      | 1.0.0            | <details><summary>Create your own fun badges!</summary>Create your own fun badges with your discord info. A improvement of [TrustyJAIDs Badges cog](https://github.com/TrustyJAID/Trusty-cogs) to prevent conflicts with the leveler cog.</details>                                                                                                                                                                                                                                                                                                                                                                    | TrustyJAID & StuxieDev                                                                                        |                              
 | RoleUtils       | 1.0.0            | <details><summary>Manage roles with ease</summary>Manage roles with ease with this utility. A improvement of [Phens RoleUtils cog](https://github.com/phenom4n4n/phen-cogs) to prevent conflicts with the leveler cog.</details>                                                                                                                                                                                                                                                                                                                                                                                       | Phen & StuxieDev                                                                                              | 
-Any questions you can find [RoboStux](https://discord.com/oauth2/authorize?client_id=713142514986778715&scope=bot&permissions=2147483383) and myself over on [my server](https://discord.gg/XqKzXtS).
+
+## Need Support 
+
+If you need any support or have any questions, you can find my Discord Bot [RoboStux](https://discord.com/oauth2/authorize?client_id=713142514986778715&scope=bot&permissions=2147483383) and myself over on [my server](https://discord.gg/XqKzXtS).
 
 ## Credits
 
-Thank you to everyone who has pushed me to think about new ideas and implement them.
+Thank you to everyone who has worked on Red-DiscordBot and the Red-Cogs
+Thank you to TrusyJAID for creating the Badges cog
+Thank you to Phen for creating the RoleUtils cog
