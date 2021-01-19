@@ -1,8 +1,8 @@
 {
     "author" : [
-        "TrustyJAID"
+        "StuxieDev"
     ],
-    "description" : "Create your own badge with your discord info.",
+    "description" : "Create your own fun badge with your discord info.",
     "disabled" : false,
     "end_user_data_statement" : "This cog does not persistently store data or metadata about users.",
     "hidden" : false,

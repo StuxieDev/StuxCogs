@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2018-12-14 21:05-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: redgettext 2.1\n"
+
+
+#: funbadges.py:23
+#, docstring
+msgid ""
+"\n"
+"        Create your own fun badge with your discord info\n"
+"    "
+msgstr ""
+
+#: funbadges.py:75 funbadges.py:80
+msgid "GENERAL SUPPORT"
+msgstr ""
+
+#: funbadges.py:84
+msgid "ACTIVE"
+msgstr ""
+
+#: funbadges.py:86
+msgid "COMPLETING TASK"
+msgstr ""
+
+#: funbadges.py:88
+msgid "AWAITING INSTRUCTIONS"
+msgstr ""
+
+#: funbadges.py:90
+msgid "MIA"
+msgstr ""
+
+#: funbadges.py:130
+msgid "LEVEL "
+msgstr ""
+
+#: funbadges.py:229
+#, docstring
+msgid ""
+"\n"
+"            Create your own fun badge with your discord info\n"
+"\n"
+"            `funbadge` is the name of the fun badges\n"
+"            do `[p]listfunbadges` to see available fun badges\n"
+"        "
+msgstr ""
+
+#: funbadges.py:244 badges.py:267
+msgid "Something went wrong sorry!"
+msgstr ""
+
+#: funbadges.py:251
+#, docstring
+msgid ""
+"\n"
+"            Create your own fun gif badge with your discord info.\n"
+"            this only works if you have a gif avatar\n"
+"\n"
+"            `funbadge` is the name of the fun badges\n"
+"            do `[p]listfunbadges` to see available fun badges\n"
+"        "
+msgstr ""
+
+#: funbadges.py:275
+#, docstring
+msgid ""
+"\n"
+"            List the available fun badges that can be created\n"
+"        "
+msgstr ""
+
+#: funbadges.py:289 funbadges.py:292
+msgid "Global Fun Badges"
+msgstr ""
+

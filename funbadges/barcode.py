@@ -30,7 +30,7 @@ try:
 except NameError:
     _strbase = str
 
-log = logging.getLogger("red.Trusty-cogs.badges")
+log = logging.getLogger("red.StuxCogs.funbadges")
 
 
 def mm2px(mm, dpi=300):
