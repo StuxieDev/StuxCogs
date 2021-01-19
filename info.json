@@ -1,0 +1,8 @@
+{
+    "author" : ["StuxieDev"],
+    "install_msg" : "Thanks for checking out my cogs!\nFor issues, bugs, or suggestions contact me in the discord support server here: https://discord.gg/XqKzXtS\nFor more information on my cogs go to my github here: <https://github.com/StuxieDev/StuxCogs>",
+    "name" : "StuxCogs",
+    "short" : "Cogs by StuxieDev.",
+    "description" : "A plethora of potentially useful commands and functions for your bot.",
+    "tags" : ["Fun", "Utility"]
+}
