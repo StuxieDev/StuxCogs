@@ -1147,9 +1147,9 @@ class ServerStats(commands.Cog):
             page_start=0,
         ).start(ctx=ctx)
 
-    @commands.command()
+    @commands.command(name="channelslist")
     @checks.is_owner()
-    async def listchannels(self, ctx: commands.Context, *, guild: GuildConverter = None) -> None:
+    async def channelslist(self, ctx: commands.Context, *, guild: GuildConverter = None) -> None:
         """
         Lists channels and their position and ID for a server
 
