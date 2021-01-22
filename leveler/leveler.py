@@ -34,7 +34,7 @@ from redbot.core.utils.menus import DEFAULT_CONTROLS, menu
 from redbot.core.utils.predicates import MessagePredicate
 
 
-log = logging.getLogger("red.aikaterna.leveler")
+log = logging.getLogger("red.StuxCogs.leveler")
 
 
 async def non_global_bank(ctx):
@@ -63,7 +63,7 @@ class Leveler(commands.Cog):
             "bg_price": 0,
             "badge_type": "circles",
             "removed_backgrounds": {"profile": [], "rank": [], "levelup": []},
-            "backgrounds": {"profile": [], "rank": [], "levelup": []},
+            "backgrounds": {"profile": {}, "rank": {}, "levelup": {}},
             "xp": [15, 20],
             "default_profile": "https://cdn.stux.media/levels/bgs/profile/default.jpg",
             "default_rank": "https://cdn.stux.media/levels/bgs/rank/default.jpg",
