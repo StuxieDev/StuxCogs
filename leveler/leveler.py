@@ -1830,7 +1830,7 @@ class Leveler(commands.Cog):
         user = ctx.author
         server = ctx.guild
 
-        required_members = 25
+        required_members = 5
         members = len([member for member in server.members if not member.bot])
 
         if members < required_members:
