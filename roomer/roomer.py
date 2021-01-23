@@ -68,7 +68,7 @@ class Roomer(commands.Cog):
     async def _member_joined_auto_start_channel(self, settings, member, after_channel):
         if after_channel.id in settings["auto_channels"]:
             channel = await after_channel.category.create_voice_channel(
-                settings["name"],
+                member.name + "'s " + settings["name"],
                 overwrites=after_channel.overwrites,
                 reason=_("Automated voicechannel creation."),
             )
@@ -229,7 +229,6 @@ class Roomer(commands.Cog):
     async def create(self, ctx, public: Optional[bool] = False, *, name: str):
         """Create a private voicechannel."""
         data = await self.config.guild(ctx.guild).all()
-        ctype = "Private"
         if data["private"]:
             try:
                 if ctx.author.voice.channel.id == data["pstart"]:
@@ -246,14 +245,12 @@ class Roomer(commands.Cog):
                         )
                         return
                     if public:
-                        ctype = "Public"
                         ov = {
                             ctx.author: discord.PermissionOverwrite(
                                 view_channel=True, connect=True, speak=True, manage_channels=True
                             )
                         }
                     else:
-                        ctype = "Private"
                         ov = {
                             ctx.guild.default_role: discord.PermissionOverwrite(
                                 view_channel=True, connect=False
@@ -263,7 +260,7 @@ class Roomer(commands.Cog):
                             ),
                         }
                     c = await ctx.guild.create_voice_channel(
-                        _("{pname}'s {ctype} {name}").format(pname=ctx.author.name, ctype=ctype, name=name),
+                        ctx.author.name + "'s " + name,
                         overwrites=ov,
                         category=ctx.guild.get_channel(data["pcat"]),
                         reason=_("Private room"),
@@ -373,7 +370,7 @@ class Roomer(commands.Cog):
                 ),
             }
             c = await ctx.guild.create_text_channel(
-                _("{pname}'s Private {name}").format(pname=ctx.author.name, name=name),
+                ctx.author.name + "'s" + name,
                 overwrites=ov,
                 category=ctx.guild.get_channel(data["pcat"]),
                 reason=_("Private text channel"),
