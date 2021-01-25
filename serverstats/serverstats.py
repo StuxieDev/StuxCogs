@@ -1244,7 +1244,7 @@ class ServerStats(commands.Cog):
         """
         Display info about this server/guild
         """
-        return await ctx.send(_("This command has been removed from the Bot"))
+        return await ctx.send(_("This command has been disabled by the Bot Developer."))
         """
         if not ctx.guild and not await ctx.bot.is_owner(ctx.author):
             return await ctx.send(_("This command is not available in DM."))
