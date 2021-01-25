@@ -1271,13 +1271,9 @@ class ServerStats(commands.Cog):
     @commands.bot_has_permissions(embed_links=True)
     @checks.admin()
     async def getguilds(self, ctx: commands.Context, *, guilds: MultiGuildConverter) -> None:
-    """
-        """
         Display info about multiple servers
 
         `guild_name` can be either the server ID or partial name
-        """
-    """
         page = 0
         if not guilds:
             guilds = ctx.bot.guilds
