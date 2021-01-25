@@ -1241,9 +1241,9 @@ class ServerStats(commands.Cog):
     @commands.bot_has_permissions(embed_links=True)
     async def getguild(self, ctx: commands.Context, *, guild: GuildConverter = None) -> None:
         """
-        Display info about servers the bot is on
-
-        `guild_name` can be either the server ID or partial name
+        Display info about this server/guild
+        """
+        return await ctx.send(_("This command has been removed from the Bot"))
         """
         if not ctx.guild and not await ctx.bot.is_owner(ctx.author):
             return await ctx.send(_("This command is not available in DM."))
@@ -1263,16 +1263,20 @@ class ServerStats(commands.Cog):
             cog=self,
             page_start=page,
         ).start(ctx=ctx)
-
+        """
+        
+    """    
     @commands.command()
     @commands.bot_has_permissions(embed_links=True)
     @checks.admin()
     async def getguilds(self, ctx: commands.Context, *, guilds: MultiGuildConverter) -> None:
+    """
         """
         Display info about multiple servers
 
         `guild_name` can be either the server ID or partial name
         """
+    """
         page = 0
         if not guilds:
             guilds = ctx.bot.guilds
@@ -1285,7 +1289,7 @@ class ServerStats(commands.Cog):
             cog=self,
             page_start=page,
         ).start(ctx=ctx)
-
+    """
     @commands.command()
     @commands.guild_only()
     @checks.mod_or_permissions(manage_messages=True)
