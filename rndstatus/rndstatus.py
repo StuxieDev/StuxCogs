@@ -32,7 +32,7 @@ class RndStatus(commands.Cog):
             "botstats": False,
             "delay": 300,
             "statuses": ["her Turn()", "Tomb Raider II", "Transistor", "NEO Scavenger", "Python", "with your heart.",],
-            "streamer": "rndstatusstreamer",
+            "streamer": "StuxieDev",
             "type": 0,
             "status": 0,
         }
@@ -178,7 +178,7 @@ class RndStatus(commands.Cog):
             clean_prefix = pattern.sub(f"@{me.name}", prefix[0])
             total_users = len(self.bot.users)
             servers = str(len(self.bot.guilds))
-            site_link = "robo.stux.gg"
+            site_link = "robo.st"
             botstatus = f"{clean_prefix}help | {total_users} users | {servers} servers | {site_link}"
             if (current_game != str(botstatus)) or current_game is None:
                 if _type == 1:
