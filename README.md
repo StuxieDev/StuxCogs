@@ -5,7 +5,7 @@
 [![Subscribe on Patreon](https://img.shields.io/badge/Patreon-Follow-orange.svg)](https://www.patreon.com/StuxieDev)
 
 
-StuxieDev's Cogs for  [Red-DiscordBot](https://github.com/Cog-Creators/Red-DiscordBot/tree/V3/develop).
+StuxieDev's Cogs for [Red-DiscordBot](https://github.com/Cog-Creators/Red-DiscordBot/tree/V3/develop).  
 To add the cogs to your instance please do: `[p]repo add StuxCogs https://github.com/StuxieDev/StuxCogs/`
 
 
@@ -24,7 +24,7 @@ If you need any support or have any questions, you can find my Discord Bot [Robo
 
 ## Credits
 
-Thank you to everyone who has worked on Red-DiscordBot and the Red-Cogs
-Thank you to TrusyJAID for creating the Badges cog and the ServerStats cog
-Thank you to Phen for creating the RoleUtils cog
-Thank you to aikaterna and TwentySix for creating the RndStatus cog
+Thank you to everyone who has worked on Red-DiscordBot and the Red-Cogs.  
+Thank you to TrusyJAID for creating the Badges cog and the ServerStats cog.  
+Thank you to Phen for creating the RoleUtils cog.  
+Thank you to aikaterna and TwentySix for creating the RndStatus cog.  
