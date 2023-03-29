@@ -161,8 +161,7 @@ class RndStatus(commands.Cog):
         _type = cog_settings["type"]
         _status = cog_settings["status"]
 
-        # url = f"https://www.twitch.tv/{streamer}"
-        url = "https://robo.st"
+        url = f"https://www.twitch.tv/{streamer}"
         prefix = await self.bot.get_valid_prefixes()
 
         if _status == 0:
