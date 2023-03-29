@@ -50,7 +50,7 @@ class RndStatus(commands.Cog):
 
     @rndstatus.command(name="set")
     async def _set(self, ctx, *statuses: str):
-        """Sets Red's random statuses.
+        """Sets random statuses.
         Accepts multiple statuses.
         Must be enclosed in double quotes in case of multiple words.
         Example:
@@ -161,7 +161,8 @@ class RndStatus(commands.Cog):
         _type = cog_settings["type"]
         _status = cog_settings["status"]
 
-        url = f"https://www.twitch.tv/{streamer}"
+        # url = f"https://www.twitch.tv/{streamer}"
+        url = "https://robo.st"
         prefix = await self.bot.get_valid_prefixes()
 
         if _status == 0:
