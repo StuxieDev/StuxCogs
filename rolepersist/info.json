@@ -1,0 +1,14 @@
+{
+	"author": [
+		"StuxieDev"
+	],
+	"description": "Makes roles persist when a user joins & leaves a server.",
+	"install_msg": "Thanks for installing, have fun.",
+	"min_bot_version": "3.3.6",
+	"short": "Persistent roles.",
+	"tags": [
+		"roles"
+	],
+	"type": "COG",
+	"end_user_data_statement": "This cog stores the roles of users when they leave the server. These are used to re-assign roles when they return."
+}
