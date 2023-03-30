@@ -200,7 +200,7 @@ class Badges(commands.Cog):
     async def create_badge(self, user, badge, is_gif: bool):
         """Async create badges handler"""
         template_img = await self.dl_image(badge.file_name)
-        task = ctools.partial(self.make_template, user=user, badge=badge, template=template_img)
+        task = functools.partial(self.make_template, user=user, badge=badge, template=template_img)
         task = self.bot.loop.run_in_executor(None, task)
         try:
             template = await asyncio.wait_for(task, timeout=60)
@@ -241,7 +241,7 @@ class Badges(commands.Cog):
                 to_return = await Badge.from_json(badge)
         return to_return
 
-    @commands.command(aliases=["badge"])
+    @commands.command()
     async def badges(self, ctx: commands.Context, *, badge: str) -> None:
         """
         Create your own badge with your discord info
@@ -269,7 +269,7 @@ class Badges(commands.Cog):
             badge_img.close()
             await ctx.send(files=[image])
 
-    @commands.command(aliases=["gbadge"])
+    @commands.command()
     async def gbadges(self, ctx: commands.Context, *, badge: str) -> None:
         """
         Create your own gif badge with your discord info
