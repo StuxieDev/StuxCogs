@@ -12,18 +12,18 @@ from redbot.core import Config, commands
 from redbot.core.data_manager import bundled_data_path
 from redbot.core.i18n import Translator, cog_i18n
 
-from .funbadge_entry import FunBadge
+from .badge_entry import Badge
 from .barcode import ImageWriter, generate
 from .templates import blank_template
 
-_ = Translator("FunBadges", __file__)
-log = logging.getLogger("red.StuxCogs.funbadges")
+_ = Translator("Badges", __file__)
+log = logging.getLogger("red.stuxiedev.badges")
 
 
 @cog_i18n(_)
-class FunBadges(commands.Cog):
+class Badges(commands.Cog):
     """
-    Create fun fake badges based on your discord profile
+    Create fake badges based on your discord profile
     """
 
     __author__ = ["StuxieDev"]
@@ -32,8 +32,8 @@ class FunBadges(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.config = Config.get_conf(self, 1545487348434)
-        default_guild = {"funbadges": []}
-        default_global = {"funbadges": blank_template}
+        default_guild = {"badges": []}
+        default_global = {"badges": blank_template}
         self.config.register_global(**default_global)
         self.config.register_guild(**default_guild)
 
@@ -88,7 +88,7 @@ class FunBadges(commands.Cog):
                 return BytesIO(test)
 
     def make_template(
-        self, user: Union[discord.User, discord.Member], funbadge: FunBadge, template: Image
+        self, user: Union[discord.User, discord.Member], badge: Badge, template: Image
     ) -> Image:
         """Build the base template before determining animated or not"""
         if hasattr(user, "roles"):
@@ -117,7 +117,7 @@ class FunBadges(commands.Cog):
         barcode = Image.open(barcode)
         barcode = self.remove_white_barcode(barcode)
         fill = (0, 0, 0)  # text colour fill
-        if funbadge.is_inverted:
+        if badge.is_inverted:
             fill = (255, 255, 255)
             barcode = self.invert_barcode(barcode)
         template = Image.open(template)
@@ -140,7 +140,7 @@ class FunBadges(commands.Cog):
         # adds username
         draw.text((225, 330), str(user.display_name), fill=fill, font=font1)
         # adds ID Class
-        draw.text((225, 400), funbadge.code + "-" + str(user).split("#")[1], fill=fill, font=font1)
+        draw.text((225, 400), badge.code + "-" + str(user).split("#")[1], fill=fill, font=font1)
         # adds user id
         draw.text((250, 115), str(user.id), fill=fill, font=font2)
         # adds user status
@@ -150,7 +150,7 @@ class FunBadges(commands.Cog):
         # adds user level
         draw.text((420, 475), _("LEVEL ") + level, fill="red", font=font1)
         # adds user level
-        if funbadge.badge_name != "discord" and user is discord.Member:
+        if badge.badge_name != "discord" and user is discord.Member:
             draw.text((60, 585), str(user.joined_at), fill=fill, font=font2)
         else:
             draw.text((60, 585), str(user.created_at), fill=fill, font=font2)
@@ -158,7 +158,7 @@ class FunBadges(commands.Cog):
         return template
 
     def make_animated_gif(self, template: Image, avatar: BytesIO) -> BytesIO:
-        """Create animated fun badge from gif avatar"""
+        """Create animated badge from gif avatar"""
         gif_list = [frame.copy() for frame in ImageSequence.Iterator(avatar)]
         img_list = []
         num = 0
@@ -184,8 +184,8 @@ class FunBadges(commands.Cog):
                 break
         return temp
 
-    def make_funbadge(self, template: Image, avatar: Image):
-        """Create basic fun badge from regular avatar"""
+    def make_badge(self, template: Image, avatar: Image):
+        """Create basic badge from regular avatar"""
         watermark = avatar.convert("RGBA")
         watermark.putalpha(128)
         watermark = watermark.resize((100, 100))
@@ -197,10 +197,10 @@ class FunBadges(commands.Cog):
         temp.name = "temp.gif"
         return temp
 
-    async def create_funbadge(self, user, funbadge, is_gif: bool):
-        """Async create fun badges handler"""
-        template_img = await self.dl_image(funbadge.file_name)
-        task = functools.partial(self.make_template, user=user, funbadge=funbadge, template=template_img)
+    async def create_badge(self, user, badge, is_gif: bool):
+        """Async create badges handler"""
+        template_img = await self.dl_image(badge.file_name)
+        task = ctools.partial(self.make_template, user=user, badge=badge, template=template_img)
         task = self.bot.loop.run_in_executor(None, task)
         try:
             template = await asyncio.wait_for(task, timeout=60)
@@ -219,7 +219,7 @@ class FunBadges(commands.Cog):
         else:
             url = user.avatar_url_as(format="png")
             avatar = Image.open(await self.dl_image(url))
-            task = functools.partial(self.make_funbadge, template=template, avatar=avatar)
+            task = functools.partial(self.make_badge, template=template, avatar=avatar)
             task = self.bot.loop.run_in_executor(None, task)
             try:
                 temp = await asyncio.wait_for(task, timeout=60)
@@ -229,86 +229,86 @@ class FunBadges(commands.Cog):
         temp.seek(0)
         return temp
 
-    async def get_funbadge(self, badge_name: str, guild: Optional[discord.Guild] = None) -> FunBadge:
+    async def get_badge(self, badge_name: str, guild: Optional[discord.Guild] = None) -> Badge:
         if guild is None:
-            guild_funbadges = []
+            guild_badges = []
         else:
-            guild_funbadges = await self.config.guild(guild).funbadges()
-        all_funbadges = await self.config.funbadges() + guild_funbadges
+            guild_badges = await self.config.guild(guild).badges()
+        all_badges = await self.config.badges() + guild_badges
         to_return = None
-        for funbadge in all_funbadges:
-            if badge_name.lower() in funbadge["badge_name"].lower():
-                to_return = await FunBadge.from_json(funbadge)
+        for badge in all_badges:
+            if badge_name.lower() in badge["badge_name"].lower():
+                to_return = await Badge.from_json(badge)
         return to_return
 
-    @commands.command(aliases=["funbadge"])
-    async def funbadges(self, ctx: commands.Context, *, funbadge: str) -> None:
+    @commands.command(aliases=["badge"])
+    async def badges(self, ctx: commands.Context, *, badge: str) -> None:
         """
-        Create your own fun badge with your discord info
+        Create your own badge with your discord info
 
-        `funbadge` is the name of the fun badges
-        do `[p]listfunbadges` to see available fun badges
+        `badge` is the name of the badges
+        do `[p]listbadges` to see available badges
         """
         guild = ctx.message.guild
         user = ctx.message.author
-        if funbadge.lower() == "list":
-            await ctx.invoke(self.listfunbadges)
+        if badge.lower() == "list":
+            await ctx.invoke(self.listbadges)
             return
-        funbadge_obj = await self.get_funbadge(funbadge, guild)
-        if not funbadge_obj:
-            await ctx.send(_("`{}` is not an available fun badge.").format(funbadge))
+        badge_obj = await self.get_badge(badge, guild)
+        if not badge_obj:
+            await ctx.send(_("`{}` is not an available badge.").format(badge))
             return
         async with ctx.channel.typing():
-            funbadge_img = await self.create_funbadge(user, funbadge_obj, False)
-            if funbadge_img is None:
+            badge_img = await self.create_badge(user, badge_obj, False)
+            if badge_img is None:
                 await ctx.send(_("Something went wrong sorry!"))
                 return
-            image = discord.File(funbadge_img, "funbadge.png")
+            image = discord.File(badge_img, "badge.png")
             embed = discord.Embed(color=ctx.author.color)
-            embed.set_image(url="attachment://funbadge.png")
-            funbadge_img.close()
+            embed.set_image(url="attachment://badge.png")
+            badge_img.close()
             await ctx.send(files=[image])
 
-    @commands.command(aliases=["gfunbadge"])
-    async def gfunbadges(self, ctx: commands.Context, *, funbadge: str) -> None:
+    @commands.command(aliases=["gbadge"])
+    async def gbadges(self, ctx: commands.Context, *, badge: str) -> None:
         """
-        Create your own fun gif badge with your discord info
+        Create your own gif badge with your discord info
         this only works if you have a gif avatar
 
-        `funbadge` is the name of the fun badges
-        do `[p]listfunbadges` to see available fun badges
+        `badge` is the name of the badges
+        do `[p]listbadges` to see available badges
         """
         guild = ctx.message.guild
         user = ctx.message.author
-        if funbadge.lower() == "list":
-            await ctx.invoke(self.listfunbadges)
+        if badge.lower() == "list":
+            await ctx.invoke(self.listbadges)
             return
-        funbadge_obj = await self.get_funbadge(funbadge, guild)
-        if not funbadge_obj:
-            await ctx.send(_("`{}` is not an available fun badge.").format(funbadge))
+        badge_obj = await self.get_badge(badge, guild)
+        if not badge_obj:
+            await ctx.send(_("`{}` is not an available badge.").format(badge))
             return
         async with ctx.channel.typing():
-            funbadge_img = await self.create_funbadge(user, funbadge_obj, True)
-            if funbadge_img is None:
+            badge_img = await self.create_badge(user, badge_obj, True)
+            if badge_img is None:
                 await ctx.send(_("Something went wrong sorry!"))
                 return
-            image = discord.File(funbadge_img)
-            funbadge_img.close()
+            image = discord.File(badge_img)
+            badge_img.close()
             await ctx.send(file=image)
 
     @commands.command()
-    async def listfunbadges(self, ctx: commands.Context) -> None:
+    async def listbadges(self, ctx: commands.Context) -> None:
         """
-        List the available fun badges that can be created
+        List the available badges that can be created
         """
         # guild = ctx.message.guild
-        global_funbadges = await self.config.funbadges()
-        # guild_funbadges = await self.config.guild(guild).funbadges()
-        msg = _("__Global Fun Badges__\n")
-        msg += ", ".join(funbadge["badge_name"] for funbadge in global_funbadges)
+        global_badges = await self.config.badges()
+        # guild_badges = await self.config.guild(guild).badges()
+        msg = _("__Global Badges__\n")
+        msg += ", ".join(badge["badge_name"] for badge in global_badges)
 
-        # for funbadge in await self.config.funbadges():
-        # if guild_funbadges != []:
-        # funbadges = ", ".join(funbadge["badge_name"] for funbadge in guild_funbadges)
-        # em.add_field(name=_("Global Fun Badges"), value=badges)
+        # for badge in await self.config.badges():
+        # if guild_badges != []:
+        # badges = ", ".join(badge["badge_name"] for badge in guild_badges)
+        # em.add_field(name=_("Global Badges"), value=badges)
         await ctx.maybe_send_embed(msg)

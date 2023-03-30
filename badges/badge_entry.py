@@ -1,4 +1,4 @@
-class FunBadge:
+class Badge:
     def __init__(
         self,
         badge_name: str,

@@ -15,74 +15,74 @@ msgstr ""
 "Generated-By: redgettext 2.1\n"
 
 
-#: funbadges.py:23
+#: badges.py:23
 #, docstring
 msgid ""
 "\n"
-"        Create your own fun badge with your discord info\n"
+"        Create your own badge with your discord info\n"
 "    "
 msgstr ""
 
-#: funbadges.py:75 funbadges.py:80
+#: badges.py:75 badges.py:80
 msgid "GENERAL SUPPORT"
 msgstr ""
 
-#: funbadges.py:84
+#: badges.py:84
 msgid "ACTIVE"
 msgstr ""
 
-#: funbadges.py:86
+#: badges.py:86
 msgid "COMPLETING TASK"
 msgstr ""
 
-#: funbadges.py:88
+#: badges.py:88
 msgid "AWAITING INSTRUCTIONS"
 msgstr ""
 
-#: funbadges.py:90
+#: badges.py:90
 msgid "MIA"
 msgstr ""
 
-#: funbadges.py:130
+#: badges.py:130
 msgid "LEVEL "
 msgstr ""
 
-#: funbadges.py:229
+#: badges.py:229
 #, docstring
 msgid ""
 "\n"
-"            Create your own fun badge with your discord info\n"
+"            Create your own badge with your discord info\n"
 "\n"
-"            `funbadge` is the name of the fun badges\n"
-"            do `[p]listfunbadges` to see available fun badges\n"
+"            `badge` is the name of the badges\n"
+"            do `[p]listbadges` to see available badges\n"
 "        "
 msgstr ""
 
-#: funbadges.py:244 badges.py:267
+#: badges.py:244 badges.py:267
 msgid "Something went wrong sorry!"
 msgstr ""
 
-#: funbadges.py:251
+#: badges.py:251
 #, docstring
 msgid ""
 "\n"
-"            Create your own fun gif badge with your discord info.\n"
+"            Create your own gif badge with your discord info.\n"
 "            this only works if you have a gif avatar\n"
 "\n"
-"            `funbadge` is the name of the fun badges\n"
-"            do `[p]listfunbadges` to see available fun badges\n"
+"            `badge` is the name of the badges\n"
+"            do `[p]listbadges` to see available badges\n"
 "        "
 msgstr ""
 
-#: funbadges.py:275
+#: badges.py:275
 #, docstring
 msgid ""
 "\n"
-"            List the available fun badges that can be created\n"
+"            List the available badges that can be created\n"
 "        "
 msgstr ""
 
-#: funbadges.py:289 funbadges.py:292
-msgid "Global Fun Badges"
+#: badges.py:289 badges.py:292
+msgid "Global Badges"
 msgstr ""
 
