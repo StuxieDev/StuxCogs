@@ -1,4 +1,5 @@
 from discord import Member, AuditLogAction, Role, Object
+from typing import Set, List, Union
 from redbot.core import Config, commands, checks
 from redbot.core.utils import AsyncIter
 import logging
@@ -8,7 +9,7 @@ log = logging.getLogger("red.stuxiedev.rolepersist")
 
 
 class RolePersist(commands.Cog):
-    """Makes roles persist when a user joins & leaves a server. #
+    """Makes roles persist when a user joins & leaves a server.
     Currently, when users leave servers, they wont regain their roles when rejoining. 
     This cog will store the users roles when they leave the server.
     It will then readd them when the user rejoins the server"""
