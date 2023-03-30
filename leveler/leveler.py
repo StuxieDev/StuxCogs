@@ -34,7 +34,7 @@ from redbot.core.utils.menus import DEFAULT_CONTROLS, menu
 from redbot.core.utils.predicates import MessagePredicate
 
 
-log = logging.getLogger("red.StuxCogs.leveler")
+log = logging.getLogger("red.stuxiedev.leveler")
 
 
 async def non_global_bank(ctx):
@@ -65,9 +65,9 @@ class Leveler(commands.Cog):
             "removed_backgrounds": {"profile": [], "rank": [], "levelup": []},
             "backgrounds": {"profile": {}, "rank": {}, "levelup": {}},
             "xp": [15, 20],
-            "default_profile": "https://cdn.stux.media/levels/bgs/profile/default.jpg",
-            "default_rank": "https://cdn.stux.media/levels/bgs/rank/default.jpg",
-            "default_levelup": "https://cdn.stux.media/levels/bgs/levelup/default.jpg",
+            "default_profile": "https://media.robo.st/levels/bgs/profile/default.jpg",
+            "default_rank": "https://media.robo.st/levels/bgs/rank/default.jpg",
+            "default_levelup": "https://media.robo.st/levels/bgs/levelup/default.jpg",
             "rep_price": 0,
         }
         default_guild = {
@@ -148,31 +148,31 @@ class Leveler(commands.Cog):
     def DEFAULT_BGS(self):
         return {
             "profile": {
-                "default": "https://cdn.stux.media/levels/bgs/profile/default.jpg",
-                "alice": "https://cdn.stux.media/levels/bgs/profile/alice.png",
-                "abstract": "https://cdn.stux.media/levels/bgs/profile/abstract.png",
-                "bluestairs": "https://cdn.stux.media/levels/bgs/profile/bluestairs.png",
-                "lamp": "https://cdn.stux.media/levels/bgs/profile/lamp.jpg",
-                "coastline": "https://cdn.stux.media/levels/bgs/profile/coastline.jpg",
-                "redblack": "https://cdn.stux.media/levels/bgs/profile/redblack.jpg",
-                "iceberg": "https://cdn.stux.media/levels/bgs/profile/iceberg.png",
-                "miraiglasses": "https://cdn.stux.media/levels/bgs/profile/miraiglasses.png",
-                "miraikuriyama": "https://cdn.stux.media/levels/bgs/profile/miraikuriyama.png",
-                "mountaindawn": "https://cdn.stux.media/levels/bgs/profile/mountaindawn.jpg",
-                "waterlilies": "https://cdn.stux.media/levels/bgs/profile/waterlilies.jpg",
+                "default": "https://media.robo.st/levels/bgs/profile/default.jpg",
+                "alice": "https://media.robo.st/levels/bgs/profile/alice.png",
+                "abstract": "https://media.robo.st/levels/bgs/profile/abstract.png",
+                "bluestairs": "https://media.robo.st/levels/bgs/profile/bluestairs.png",
+                "lamp": "https://media.robo.st/levels/bgs/profile/lamp.jpg",
+                "coastline": "https://media.robo.st/levels/bgs/profile/coastline.jpg",
+                "redblack": "https://media.robo.st/levels/bgs/profile/redblack.jpg",
+                "iceberg": "https://media.robo.st/levels/bgs/profile/iceberg.png",
+                "miraiglasses": "https://media.robo.st/levels/bgs/profile/miraiglasses.png",
+                "miraikuriyama": "https://media.robo.st/levels/bgs/profile/miraikuriyama.png",
+                "mountaindawn": "https://media.robo.st/levels/bgs/profile/mountaindawn.jpg",
+                "waterlilies": "https://media.robo.st/levels/bgs/profile/waterlilies.jpg",
             },
             "rank": {
-                "default": "https://cdn.stux.media/levels/bgs/rank/default.jpg",
-                "aurora": "https://cdn.stux.media/levels/bgs/rank/aurora.jpg",
-                "nebula": "https://cdn.stux.media/levels/bgs/rank/nebula.jpg",
-                "mountain": "https://cdn.stux.media/levels/bgs/rank/mountain.jpg",
-                "city": "https://cdn.stux.media/levels/bgs/rank/city.jpg",
-                "trans": "https://cdn.stux.media/levels/bgs/rank/trans.jpg",
-                "lgbt": "https://cdn.stux.media/levels/bgs/rank/lgbt.jpg",
-                "pride": "https://cdn.stux.media/levels/bgs/rank/pride.jpg",
+                "default": "https://media.robo.st/levels/bgs/rank/default.jpg",
+                "aurora": "https://media.robo.st/levels/bgs/rank/aurora.jpg",
+                "nebula": "https://media.robo.st/levels/bgs/rank/nebula.jpg",
+                "mountain": "https://media.robo.st/levels/bgs/rank/mountain.jpg",
+                "city": "https://media.robo.st/levels/bgs/rank/city.jpg",
+                "trans": "https://media.robo.st/levels/bgs/rank/trans.jpg",
+                "lgbt": "https://media.robo.st/levels/bgs/rank/lgbt.jpg",
+                "pride": "https://media.robo.st/levels/bgs/rank/pride.jpg",
             },
             "levelup": {
-                "default": "https://cdn.stux.media/levels/bgs/levelup/default.jpg"
+                "default": "https://media.robo.st/levels/bgs/levelup/default.jpg"
             },
         }
 
