@@ -74,6 +74,15 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, description, src, user)
         await ctx.send(embed=e)
  
+    @commands.command(name="angry")
+    async def lpangry(self, ctx, *, user):
+        """Send a angry face"""
+        imgtype = "angry"
+        desc = "angry face :angry:"
+        src = self.purrbotApi(imgtype, 1, 20, "gif", "gif")
+        e = await self.buildEmbed(ctx, desc, src, user)
+        await ctx.send(embed=e)
+
     @commands.command(name="blush")
     async def lpblush(self, ctx, *, user):
         """Send a blush"""
