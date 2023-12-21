@@ -52,7 +52,7 @@ class Loveplay(commands.Cog):
         else:
             desc = "**{0}** gives **{1}** a {2}".format(ctx.author.mention, text, descriptor)
         if custom != None:
-            desc = custom.format(ctx.author.mention, text)
+            desc = custom
         botcolor = await ctx.embed_colour()
         e = discord.Embed(color=botcolor, description=desc)
         e.set_image(url=imgUrl)
@@ -95,12 +95,21 @@ class Loveplay(commands.Cog):
         await ctx.send(embed=e)
 
     @commands.command(name="comfy")
-    async def lpcomfy(self, ctx, *, user):
-        """Get comfy with someone"""
+    async def lpcomfy(self, ctx):
+        """Get comfy"""
         imgtype = "comfy"
-        desc = "**{0}** gets comfy with **{1}**"
+        desc = "**{0}** is comfy"
         src = self.purrbotApi(imgtype, 1, 20, "gif", "gif")
-        e = await self.buildEmbed(ctx, "", src, user, desc)
+        e = await self.buildEmbed(ctx, "", src, None, desc)
+        await ctx.send(embed=e)
+    
+    @commands.command(name="cry")
+    async def lpcry(self, ctx):
+        """Have a little cry"""
+        imgtype = "cry"
+        desc = "**{0}** is crying"
+        src = self.purrbotApi(imgtype, 1, 20, "gif", "gif")
+        e = await self.buildEmbed(ctx, "", src, None, desc)
         await ctx.send(embed=e)
 
     @commands.command(name="cuddle", aliases=["snuggle"])
