@@ -46,11 +46,13 @@ class Loveplay(commands.Cog):
         else:
             return url
 
-    async def buildEmbed(self, ctx, descriptor, imgUrl, text=None):
+    async def buildEmbed(self, ctx, descriptor, imgUrl, text=None, custom=None):
         if text == None:
             desc = ""
         else:
             desc = "**{0}** gives **{1}** a {2}".format(ctx.author.mention, text, descriptor)
+        if custom != None:
+            desc = custom.format(ctx.author.mention, text)
         botcolor = await ctx.embed_colour()
         e = discord.Embed(color=botcolor, description=desc)
         e.set_image(url=imgUrl)
@@ -78,7 +80,7 @@ class Loveplay(commands.Cog):
     async def lpangry(self, ctx, *, user):
         """Send a angry face"""
         imgtype = "angry"
-        desc = "angry face :angry:"
+        desc = "angry face <a:AnimeAngry:1181309512448217098>"
         src = self.purrbotApi(imgtype, 1, 20, "gif", "gif")
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
@@ -86,35 +88,46 @@ class Loveplay(commands.Cog):
     @commands.command(name="blush")
     async def lpblush(self, ctx, *, user):
         """Send a blush"""
-        desc = "blush"
-        src = self.purrbotApi(desc, 1, 20, "gif", "gif")
+        imgtype = "blush"
+        desc = "blush <a:AnimeBlush:1181309413034819665>"
+        src = self.purrbotApi(imgtype, 1, 20, "gif", "gif")
         e = await self.buildEmbed(ctx, desc, src, user)
+        await ctx.send(embed=e)
+
+    @commands.command(name="comfy")
+    async def lpcomfy(self, ctx, *, user):
+        """Get comfy with someone"""
+        imgtype = "comfy"
+        desc = "**{0}** gets comfy with **{1}**"
+        src = self.purrbotApi(imgtype, 1, 20, "gif", "gif")
+        e = await self.buildEmbed(ctx, "", src, user, desc)
         await ctx.send(embed=e)
 
     @commands.command(name="cuddle", aliases=["snuggle"])
     async def lpcuddle(self, ctx, *, user):
         """Send a cuddle"""
-        desc = "cuddle"
-        src = self.purrbotApi(desc, 1, 20, "gif", "gif")
+        imgtype = "cuddle"
+        desc = "cuddle <a:AnimeCuddle:1181307102560534659>"
+        src = self.purrbotApi(imgtype, 1, 20, "gif", "gif")
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
 
     @commands.command(name="dance")
     async def lpdance(self, ctx, *, user):
         """Send a dance"""
-        desc = "dance"
-        src = self.purrbotApi(desc, 1, 20, "gif", "gif")
+        imgtype = "dance"
+        desc = "dance <a:AnimeDance:1181309079948361888>"
+        src = self.purrbotApi(imgtype, 1, 20, "gif", "gif")
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
         
     @commands.command(name="feed", aliases=["cookie"])
     async def lpfeed(self, ctx, *, user):
-        """Send some food/cookie
-        
-        Formerly the `[p]nom` command"""
-        desc = "feed"
-        src = self.purrbotApi(desc, 1, 18, "gif", "gif")
-        e = await self.buildEmbed(ctx, "yummy cookie", src, user)
+        """Send some food/cookie"""
+        imgtype = "feed"
+        desc = "yummy cookie"
+        src = self.purrbotApi(imgtype, 1, 18, "gif", "gif")
+        e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
         
     @commands.command(name="hugs", aliases=["hug"])
