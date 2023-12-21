@@ -98,7 +98,7 @@ class Loveplay(commands.Cog):
     async def lpcomfy(self, ctx):
         """Get comfy"""
         imgtype = "comfy"
-        desc = "**{0}** is comfy"
+        desc = "**{0}** is comfy".format(ctx.author.mention)
         src = self.purrbotApi(imgtype, 1, 20, "gif", "gif")
         e = await self.buildEmbed(ctx, "", src, None, desc)
         await ctx.send(embed=e)
@@ -107,7 +107,7 @@ class Loveplay(commands.Cog):
     async def lpcry(self, ctx):
         """Have a little cry"""
         imgtype = "cry"
-        desc = "**{0}** is crying"
+        desc = "**{0}** is crying".format(ctx.author.mention)
         src = self.purrbotApi(imgtype, 1, 20, "gif", "gif")
         e = await self.buildEmbed(ctx, "", src, None, desc)
         await ctx.send(embed=e)
