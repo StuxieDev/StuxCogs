@@ -103,12 +103,13 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, "", src, None, desc)
         await ctx.send(embed=e)
     
-    @commands.command(name="cry")
+    @commands.command(name="cry", aliases=["cry"])
     async def lpcry(self, ctx):
         """Have a little cry"""
         imgtype = "cry"
         desc = "**{0}** is crying".format(ctx.author.mention)
-        src = self.purrbotApi(imgtype, 1, 20, "gif", "gif")
+        req = requests.get("https://nekos.best/api/v2/cry?amount=1").json()
+        src = req["results"][0]["url"]
         e = await self.buildEmbed(ctx, "", src, None, desc)
         await ctx.send(embed=e)
 
