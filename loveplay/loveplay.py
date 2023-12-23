@@ -103,7 +103,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, "", src, None, desc)
         await ctx.send(embed=e)
     
-    @commands.command(name="cry", aliases=["cry"])
+    @commands.command(name="cry", aliases=["sob"])
     async def lpcry(self, ctx):
         """Have a little cry"""
         imgtype = "cry"
