@@ -56,7 +56,7 @@ class Loveplay(commands.Cog):
         botcolor = await ctx.embed_colour()
         e = discord.Embed(color=botcolor, description=desc)
         e.set_image(url=imgUrl)
-        e.set_footer(text="Made with Purrbot API\u2002💌")
+        # e.set_footer(text="Made with Purrbot API\u2002💌")
         return e
 
 
@@ -137,6 +137,16 @@ class Loveplay(commands.Cog):
         desc = "yummy cookie"
         src = self.purrbotApi(imgtype, 1, 18, "gif", "gif")
         e = await self.buildEmbed(ctx, desc, src, user)
+        await ctx.send(embed=e)
+
+    @commands.command(name="happy")
+    async def lphappy(self, ctx):
+        """Don't worry, be happy"""
+        imgtype = "happy"
+        desc = "**{0}** is happy".format(ctx.author.mention)
+        req = requests.get("https://nekos.best/api/v2/happy?amount=1").json()
+        src = req["results"][0]["url"]
+        e = await self.buildEmbed(ctx, "", src, None, desc)
         await ctx.send(embed=e)
         
     @commands.command(name="hugs", aliases=["hug"])
