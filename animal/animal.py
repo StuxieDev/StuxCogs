@@ -56,24 +56,64 @@ class Animal(commands.GroupCog):
             await ctx.send(result[0]["url"])
             return
 
-    # @commands.hybrid_command()
-    # @commands.cooldown(1, 60, commands.BucketType.guild)
-    # async def kitten(self, ctx):
-    #     """Shows a kitten"""
+    @commands.hybrid_command()
+    @commands.cooldown(1, 60, commands.BucketType.guild)
+    async def kitten(self, ctx):
+        """Shows a kitten"""
 
-    #     if not await ctx.embed_requested():
-    #         await ctx.send("I need to be able to send embeds for this command.")
-    #         return
+        if not await ctx.embed_requested():
+            await ctx.send("I need to be able to send embeds for this command.")
+            return
 
-    #     try:
-    #         async with self.session.get(self.kitten_api) as r:
-    #             result = await r.json()
-    #     except aiohttp.ClientError:
-    #         await ctx.send(self.error_message)
-    #         return
-    #     else:
-    #         await ctx.send(result[0])
-    #         return
+        try:
+            async with self.session.get(self.kitten_api) as r:
+                result = await r.json()
+        except aiohttp.ClientError:
+            await ctx.send(self.error_message)
+            return
+        else:
+            await ctx.send(result[0])
+            return
+
+    @commands.hybrid_command()
+    @commands.cooldown(1, 120, commands.BucketType.guild)
+    async def kittens(self, ctx, amount : int = 5):
+        """Throws a kitten bomb!
+
+        Defaults to 5, max is 10"""
+
+        if not await ctx.embed_requested():
+            await ctx.send("I need to be able to send embeds for this command.")
+            return
+
+        results = []
+
+        if amount > 10 or amount < 1:
+            amount = 5
+
+        for x in range(0, amount):
+            try:
+                async with self.session.get(self.kitten_api) as r:
+                    api_result = await r.json()
+            except aiohttp.ClientError:
+                await ctx.send(self.error_message)
+                return
+
+            try:
+                results.append(str(api_result[0]))
+            except (TypeError, IndexError):
+                await ctx.send(self.error_message)
+                return
+
+        embed_pages = []
+
+        for i in results:
+            embed = discord.Embed(color=await ctx.embed_colour())
+            embed.set_image(url=i)
+            embed.set_footer(text=f"Page {results.index(i)+1}/{len(results)}")
+            embed_pages.append(embed)
+
+        await menu(ctx, embed_pages)
 
     @commands.hybrid_command()
     @commands.cooldown(1, 120, commands.BucketType.guild)
