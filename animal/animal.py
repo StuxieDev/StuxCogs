@@ -64,7 +64,7 @@ class Animal(commands.GroupCog):
 
         try:
             async with self.session.get(self.kitten_api) as r:
-                result = await r.json(content_type='text/html')
+                result = await r.json(content_type=None)
         except aiohttp.ClientError as e:
             await ctx.send(self.error_message)
             #await ctx.send(f"Reddit API returned the following error: {e}")
