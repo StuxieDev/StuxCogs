@@ -11,6 +11,7 @@ from redbot.core.utils.chat_formatting import box
 from redbot.core.utils.menus import menu
 
 # Libs
+import json
 import aiohttp
 
 
@@ -50,8 +51,10 @@ class Animal(commands.GroupCog):
                 result = await r.json()
         except aiohttp.ClientError:
             await ctx.send(self.error_message)
+            return
         else:
             await ctx.send(result[0]["url"])
+            return
 
     @commands.hybrid_command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
@@ -66,15 +69,19 @@ class Animal(commands.GroupCog):
             async with self.session.get(self.kitten_api) as r:
                 if r.status != 200:
                     await ctx.send(self.error_message)
+                    return
 
                 try:
                     result = await r.json(content_type=None)
                     await ctx.send(result[0]["data"]["children"][0]["data"]["url"])
-                except (KeyError, ValueError, json.JSONDecodeError):
+                    return
+                except (KeyError, ValueError, json.decoder.JSONDecodeError):
                     await ctx.send(self.error_message)
-                    
+                    return
+
         except aiohttp.ClientError:
             await ctx.send(self.error_message)
+            return
             #await ctx.send(f"Reddit API returned the following error: {e}")
 
     @commands.hybrid_command()
