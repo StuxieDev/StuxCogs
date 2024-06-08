@@ -63,12 +63,12 @@ class Animal(commands.GroupCog):
             return
 
         try:
-            async with self.session.get(self.cat_api) as r:
+            async with self.session.get(self.kitten_api) as r:
                 result = await r.json()
         except aiohttp.ClientError:
             await ctx.send(self.error_message)
         else:
-            await ctx.send(result[0])
+            await ctx.send(result[0]["data"]["children"][0]["data"]["url"])
 
     @commands.hybrid_command()
     @commands.cooldown(1, 120, commands.BucketType.guild)
