@@ -26,6 +26,7 @@ class Animal(commands.GroupCog):
         self.bot = bot
         self.session = aiohttp.ClientSession()
         self.cat_api = "https://api.thecatapi.com/v1/images/search"
+        self.kitten_api = "https://www.reddit.com/r/kittens/random.json"
         self.dog_api = "https://dog.ceo/api/breeds/image/random"
         self.pug_api = "https://dog.ceo/api/breed/pug/images/random"
         self.fox_api = "http://wohlsoft.ru/images/foxybot/randomfox.php"
@@ -51,6 +52,23 @@ class Animal(commands.GroupCog):
             await ctx.send(self.error_message)
         else:
             await ctx.send(result[0]["url"])
+
+    @commands.hybrid_command()
+    @commands.cooldown(1, 60, commands.BucketType.guild)
+    async def kitten(self, ctx):
+        """Shows a kitten from reddit"""
+
+        if not await ctx.embed_requested():
+            await ctx.send("I need to be able to send embeds for this command.")
+            return
+
+        try:
+            async with self.session.get(self.cat_api) as r:
+                result = await r.json()
+        except aiohttp.ClientError:
+            await ctx.send(self.error_message)
+        else:
+            await ctx.send(result[0]["data"]["children"][0]["data"]["url"])
 
     @commands.hybrid_command()
     @commands.cooldown(1, 120, commands.BucketType.guild)
