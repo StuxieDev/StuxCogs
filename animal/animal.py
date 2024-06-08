@@ -27,7 +27,7 @@ class Animal(commands.GroupCog):
         self.bot = bot
         self.session = aiohttp.ClientSession()
         self.cat_api = "https://api.thecatapi.com/v1/images/search"
-        self.kitten_api = "https://www.reddit.com/r/kittens/random.json"
+        self.kitten_api = "https://oauth.reddit.com/r/kittens/random.json"
         self.dog_api = "https://dog.ceo/api/breeds/image/random"
         self.pug_api = "https://dog.ceo/api/breed/pug/images/random"
         self.fox_api = "http://wohlsoft.ru/images/foxybot/randomfox.php"
@@ -67,8 +67,11 @@ class Animal(commands.GroupCog):
 
         try:
             async with self.session.get(self.kitten_api) as r:
+                if r.status == 403:
+                    await ctx.send(f"Reddit is currently rating limiting their API from my bot.\nPlease try again later.")
+                    
                 if r.status != 200:
-                    await ctx.send(f"{self.error_message}\n{r.status}")
+                    await ctx.send(f"{self.error_message}")
                     return
 
                 try:
