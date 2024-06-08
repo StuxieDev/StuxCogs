@@ -75,8 +75,8 @@ class Animal(commands.GroupCog):
                     result = await r.json(content_type=None)
                     await ctx.send(result[0]["data"]["children"][0]["data"]["url"])
                     return
-                except (KeyError, ValueError, json.decoder.JSONDecodeError):
-                    await ctx.send(self.error_message)
+                except (KeyError, ValueError, json.decoder.JSONDecodeError) as e:
+                    await ctx.send(f"{self.error_message}\n{e}")
                     return
 
         except aiohttp.ClientError:
