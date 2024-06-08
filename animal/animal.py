@@ -27,6 +27,7 @@ class Animal(commands.GroupCog):
         self.session = aiohttp.ClientSession()
         self.catapi = "https://api.thecatapi.com/v1/images/search"
         self.dogapi = "https://dog.ceo/api/breeds/image/random"
+        self.pugapi = "https://dog.ceo/api/breed/pug/images/random"
         self.foxapi = "http://wohlsoft.ru/images/foxybot/randomfox.php"
         self.dog_breed_api = "https://dog.ceo/api/breed/{}/images/random"
         self.error_message = "An API error occured. Probably just a hiccup.\nIf this error persist for several days, please report it."
@@ -38,6 +39,9 @@ class Animal(commands.GroupCog):
     @commands.cooldown(1, 60, commands.BucketType.guild)
     async def cat(self, ctx):
         """Shows a cat"""
+        if not await ctx.embed_requested():
+            await ctx.send("I need to be able to send embeds for this command.")
+            return
         try:
             async with self.session.get(self.catapi) as r:
                 result = await r.json()
@@ -52,6 +56,9 @@ class Animal(commands.GroupCog):
         """Throws a cat bomb!
 
         Defaults to 5, max is 10"""
+        if not await ctx.embed_requested():
+            await ctx.send("I need to be able to send embeds for this command.")
+            return
         results = []
         if amount > 10 or amount < 1:
             amount = 5
@@ -69,7 +76,12 @@ class Animal(commands.GroupCog):
                 await ctx.send(self.error_message)
                 return
 
-        await ctx.send("\n".join(results))
+        for i in results:
+            embed = discord.Embed(color=await ctx.embed_colour())
+            embed.set_image(url=i)
+            embed.set_footer(text=f"Page {results.index(i)+1}/{len(results)}")
+            embed_pages.append(embed)
+        await menu(ctx, embed_pages)
 
     @commands.hybrid_command()
     @commands.cooldown(1, 60, commands.BucketType.guild)
@@ -110,23 +122,26 @@ class Animal(commands.GroupCog):
                 embed_pages.append(embed)
             await menu(ctx, embed_pages)
             return
-
-        if breed.lower() == "random":
-            api = self.dogapi
-        else:
-            api = self.dog_breed_api.format(breed)
-        try:
-            async with self.session.get(api) as r:
-                result = await r.json()
-        except aiohttp.ClientError:
-            await ctx.send(self.error_message)
-            return
-        try:
-            msg = result['message']
-        except (TypeError, KeyError):
-            await ctx.send(self.error_message)
-        else:
-            await ctx.send(msg)
+        else: 
+            if not await ctx.embed_requested():
+                await ctx.send("I need to be able to send embeds for this command.")
+                return
+            if breed.lower() == "random":
+                api = self.dogapi
+            else:
+                api = self.dog_breed_api.format(breed)
+            try:
+                async with self.session.get(api) as r:
+                    result = await r.json()
+            except aiohttp.ClientError:
+                await ctx.send(self.error_message)
+                return
+            try:
+                msg = result['message']
+            except (TypeError, KeyError):
+                await ctx.send(self.error_message)
+            else:
+                await ctx.send(msg)
 
     @commands.hybrid_command()
     @commands.cooldown(1, 120, commands.BucketType.guild)
@@ -175,6 +190,9 @@ class Animal(commands.GroupCog):
     @commands.cooldown(1, 60, commands.BucketType.guild)
     async def fox(self, ctx):
         """Shows a fox"""
+        if not await ctx.embed_requested():
+            await ctx.send("I need to be able to send embeds for this command.")
+            return
         try:
             async with self.session.get(self.foxapi) as r:
                 result = await r.json()
@@ -194,6 +212,9 @@ class Animal(commands.GroupCog):
         """Throws a fox bomb!
 
         Defaults to 5, max is 10"""
+        if not await ctx.embed_requested():
+            await ctx.send("I need to be able to send embeds for this command.")
+            return
         results = []
         if amount > 10 or amount < 1:
             amount = 5
@@ -211,7 +232,32 @@ class Animal(commands.GroupCog):
                 await ctx.send(self.error_message)
                 return
 
-        await ctx.send("\n".join(results))
+        for i in results:
+            embed = discord.Embed(color=await ctx.embed_colour())
+            embed.set_image(url=i)
+            embed.set_footer(text=f"Page {results.index(i)+1}/{len(results)}")
+            embed_pages.append(embed)
+        await menu(ctx, embed_pages)
+
+    @commands.hybrid_command()
+    @commands.cooldown(1, 60, commands.BucketType.guild)
+    async def pug(self, ctx):
+        """Shows a pug"""
+        if not await ctx.embed_requested():
+            await ctx.send("I need to be able to send embeds for this command.")
+            return
+        try:
+            async with self.session.get(self.pugapi) as r:
+                result = await r.json()
+        except aiohttp.ClientError:
+            await ctx.send(self.error_message)
+            return
+        try:
+            file = result['message']
+        except (TypeError, KeyError):
+            await ctx.send(self.error_message)
+        else:
+            await ctx.send(file)
 
     @commands.hybrid_command()
     @commands.cooldown(1, 120, commands.BucketType.guild)
@@ -219,6 +265,9 @@ class Animal(commands.GroupCog):
         """Throws a pugs bomb!
 
         Defaults to 5, max is 10"""
+        if not await ctx.embed_requested():
+            await ctx.send("I need to be able to send embeds for this command.")
+            return
         results = []
         if amount > 10 or amount < 1:
             amount = 5
@@ -236,4 +285,9 @@ class Animal(commands.GroupCog):
                 await ctx.send(self.error_message)
                 return
 
-        await ctx.send("\n".join(results))
+        for i in results:
+            embed = discord.Embed(color=await ctx.embed_colour())
+            embed.set_image(url=i)
+            embed.set_footer(text=f"Page {results.index(i)+1}/{len(results)}")
+            embed_pages.append(embed)
+        await menu(ctx, embed_pages)
