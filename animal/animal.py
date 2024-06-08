@@ -72,7 +72,7 @@ class Animal(commands.GroupCog):
             await ctx.send(self.error_message)
             return
         else:
-            await ctx.send(result[0])
+            await ctx.send(result["file"])
             return
 
     @commands.hybrid_command()
@@ -100,7 +100,7 @@ class Animal(commands.GroupCog):
                 return
 
             try:
-                results.append(str(api_result[0]))
+                results.append(str(api_result["file"]))
             except (TypeError, IndexError):
                 await ctx.send(self.error_message)
                 return
