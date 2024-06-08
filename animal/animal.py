@@ -56,36 +56,37 @@ class Animal(commands.GroupCog):
             await ctx.send(result[0]["url"])
             return
 
-    @commands.hybrid_command()
-    @commands.cooldown(1, 60, commands.BucketType.guild)
-    async def kitten(self, ctx):
-        """Shows a kitten from reddit"""
+    # @commands.hybrid_command()
+    # @commands.cooldown(1, 60, commands.BucketType.guild)
+    # async def kitten(self, ctx):
+    #     """Shows a kitten from reddit"""
 
-        if not await ctx.embed_requested():
-            await ctx.send("I need to be able to send embeds for this command.")
-            return
+    #     if not await ctx.embed_requested():
+    #         await ctx.send("I need to be able to send embeds for this command.")
+    #         return
 
-        try:
-            async with self.session.get(self.kitten_api) as r:
-                if r.status == 403:
-                    await ctx.send(f"Reddit is currently rating limiting their API from my bot.\nPlease try again later.")
-                    
-                if r.status != 200:
-                    await ctx.send(f"{self.error_message}")
-                    return
+    #     try:
+    #         async with self.session.get(self.kitten_api) as r:
+    #             if r.status == 403:
+    #                 await ctx.send(f"Reddit is currently rating limiting their API from my bot.\nPlease try again later.")
+    #                 return
 
-                try:
-                    result = await r.json(content_type=None)
-                    await ctx.send(result[0]["data"]["children"][0]["data"]["url"])
-                    return
-                except (KeyError, ValueError, json.decoder.JSONDecodeError) as e:
-                    await ctx.send(f"{self.error_message}\n{e}")
-                    return
+    #             if r.status != 200:
+    #                 await ctx.send(f"{self.error_message}")
+    #                 return
 
-        except aiohttp.ClientError as e:
-            await ctx.send(f"{self.error_message}\n{e}")
-            return
-            #await ctx.send(f"Reddit API returned the following error: {e}")
+    #             try:
+    #                 result = await r.json(content_type=None)
+    #                 await ctx.send(result[0]["data"]["children"][0]["data"]["url"])
+    #                 return
+    #             except (KeyError, ValueError, json.decoder.JSONDecodeError) as e:
+    #                 await ctx.send(f"{self.error_message}\n{e}")
+    #                 return
+
+    #     except aiohttp.ClientError as e:
+    #         await ctx.send(f"{self.error_message}\n{e}")
+    #         return
+    #         #await ctx.send(f"Reddit API returned the following error: {e}")
 
     @commands.hybrid_command()
     @commands.cooldown(1, 120, commands.BucketType.guild)
