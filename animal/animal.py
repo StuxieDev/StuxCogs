@@ -19,7 +19,7 @@ def chunks(l, n):
         yield l[i:i + n]
 
 
-class Animal(commands.Cog):
+class Animal(commands.GroupCog):
     """Animal commands."""
 
     def __init__(self, bot):
