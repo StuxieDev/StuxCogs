@@ -68,7 +68,7 @@ class Animal(commands.GroupCog):
         try:
             async with self.session.get(self.kitten_api) as r:
                 if r.status != 200:
-                    await ctx.send(self.error_message)
+                    await ctx.send(f"{self.error_message}\nReddit API offline")
                     return
 
                 try:
@@ -79,8 +79,8 @@ class Animal(commands.GroupCog):
                     await ctx.send(f"{self.error_message}\n{e}")
                     return
 
-        except aiohttp.ClientError:
-            await ctx.send(self.error_message)
+        except aiohttp.ClientError as e:
+            await ctx.send(f"{self.error_message}\n{e}")
             return
             #await ctx.send(f"Reddit API returned the following error: {e}")
 
