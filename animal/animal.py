@@ -68,7 +68,7 @@ class Animal(commands.GroupCog):
         except aiohttp.ClientError:
             await ctx.send(self.error_message)
         else:
-            await ctx.send(result[0]["data"]["children"][0]["data"]["url"])
+            await ctx.send(result[0])
 
     @commands.hybrid_command()
     @commands.cooldown(1, 120, commands.BucketType.guild)
