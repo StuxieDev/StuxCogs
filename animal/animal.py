@@ -27,7 +27,7 @@ class Animal(commands.GroupCog):
         self.bot = bot
         self.session = aiohttp.ClientSession()
         self.cat_api = "https://api.thecatapi.com/v1/images/search"
-        self.kitten_api = "https://api.reddit.com/r/kittens/random"
+        self.kitten_api = "https://www.reddit.com/r/kittens/random.json"
         self.dog_api = "https://dog.ceo/api/breeds/image/random"
         self.pug_api = "https://dog.ceo/api/breed/pug/images/random"
         self.fox_api = "http://wohlsoft.ru/images/foxybot/randomfox.php"
