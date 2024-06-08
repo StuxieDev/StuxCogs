@@ -27,7 +27,7 @@ class Animal(commands.GroupCog):
         self.bot = bot
         self.session = aiohttp.ClientSession()
         self.cat_api = "https://api.thecatapi.com/v1/images/search"
-        self.kitten_api = "https://oauth.reddit.com/r/kittens/random.json"
+        self.kitten_api = "https://kittens.stuxapis.net/random.json"
         self.dog_api = "https://dog.ceo/api/breeds/image/random"
         self.pug_api = "https://dog.ceo/api/breed/pug/images/random"
         self.fox_api = "http://wohlsoft.ru/images/foxybot/randomfox.php"
@@ -59,7 +59,7 @@ class Animal(commands.GroupCog):
     # @commands.hybrid_command()
     # @commands.cooldown(1, 60, commands.BucketType.guild)
     # async def kitten(self, ctx):
-    #     """Shows a kitten from reddit"""
+    #     """Shows a kitten"""
 
     #     if not await ctx.embed_requested():
     #         await ctx.send("I need to be able to send embeds for this command.")
@@ -67,26 +67,13 @@ class Animal(commands.GroupCog):
 
     #     try:
     #         async with self.session.get(self.kitten_api) as r:
-    #             if r.status == 403:
-    #                 await ctx.send(f"Reddit is currently rating limiting their API from my bot.\nPlease try again later.")
-    #                 return
-
-    #             if r.status != 200:
-    #                 await ctx.send(f"{self.error_message}")
-    #                 return
-
-    #             try:
-    #                 result = await r.json(content_type=None)
-    #                 await ctx.send(result[0]["data"]["children"][0]["data"]["url"])
-    #                 return
-    #             except (KeyError, ValueError, json.decoder.JSONDecodeError) as e:
-    #                 await ctx.send(f"{self.error_message}\n{e}")
-    #                 return
-
-    #     except aiohttp.ClientError as e:
-    #         await ctx.send(f"{self.error_message}\n{e}")
+    #             result = await r.json()
+    #     except aiohttp.ClientError:
+    #         await ctx.send(self.error_message)
     #         return
-    #         #await ctx.send(f"Reddit API returned the following error: {e}")
+    #     else:
+    #         await ctx.send(result[0])
+    #         return
 
     @commands.hybrid_command()
     @commands.cooldown(1, 120, commands.BucketType.guild)
