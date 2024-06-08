@@ -64,12 +64,18 @@ class Animal(commands.GroupCog):
 
         try:
             async with self.session.get(self.kitten_api) as r:
-                result = await r.json(content_type=None)
-        except aiohttp.ClientError as e:
+                if r.status != 200:
+                    await ctx.send(self.error_message)
+
+                try:
+                    result = await r.json(content_type=None)
+                    await ctx.send(result[0]["data"]["children"][0]["data"]["url"])
+                except (KeyError, ValueError, json.JSONDecodeError):
+                    await ctx.send(self.error_message)
+                    
+        except aiohttp.ClientError:
             await ctx.send(self.error_message)
             #await ctx.send(f"Reddit API returned the following error: {e}")
-        else:
-            await ctx.send(result[0]["data"]["children"][0]["data"]["url"])
 
     @commands.hybrid_command()
     @commands.cooldown(1, 120, commands.BucketType.guild)
