@@ -68,7 +68,7 @@ class Animal(commands.GroupCog):
         try:
             async with self.session.get(self.kitten_api) as r:
                 if r.status != 200:
-                    await ctx.send(f"{self.error_message}\nReddit API offline")
+                    await ctx.send(f"{self.error_message}\n{r.status}")
                     return
 
                 try:
