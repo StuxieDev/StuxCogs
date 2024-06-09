@@ -63,7 +63,7 @@ class Action(commands.GroupCog):
     # Bot Commands
  
     @commands.command(name="action", aliases=["loveplay", "lp"])
-    async def lpmain(self, ctx, action, description, *, user):
+    async def action(self, ctx, action, description, *, user):
         """Send a custom lovely reaction to someone!
 
         Type  **`[p]help Action`**  to see built-in reactions.
@@ -75,7 +75,7 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
  
     @commands.hybrid_command(name="angry")
-    async def lpangry(self, ctx, *, user):
+    async def angry(self, ctx, *, user):
         """Send a angry face"""
         imgtype = "angry"
         desc = "angry face <a:AnimeAngry:1181309512448217098>"
@@ -84,7 +84,7 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
 
     @commands.hybrid_command(name="blush")
-    async def lpblush(self, ctx, *, user):
+    async def blush(self, ctx, *, user):
         """Send a blush"""
         imgtype = "blush"
         desc = "blush <a:AnimeBlush:1181309413034819665>"
@@ -93,7 +93,7 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
 
     @commands.hybrid_command(name="comfy")
-    async def lpcomfy(self, ctx):
+    async def comfy(self, ctx):
         """Get comfy"""
         imgtype = "comfy"
         desc = "**{0}** is comfy".format(ctx.author.mention)
@@ -102,7 +102,7 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
     
     @commands.hybrid_command(name="cry", aliases=["sob"])
-    async def lpcry(self, ctx):
+    async def cry(self, ctx):
         """Have a little cry"""
         imgtype = "cry"
         desc = "**{0}** is crying".format(ctx.author.mention)
@@ -112,7 +112,7 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
 
     @commands.hybrid_command(name="cuddle", aliases=["snuggle"])
-    async def lpcuddle(self, ctx, *, user):
+    async def cuddle(self, ctx, *, user):
         """Send a cuddle"""
         imgtype = "cuddle"
         desc = "cuddle <a:AnimeCuddle:1181307102560534659>"
@@ -121,7 +121,7 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
 
     @commands.hybrid_command(name="dance")
-    async def lpdance(self, ctx, *, user):
+    async def dance(self, ctx, *, user):
         """Send a dance"""
         imgtype = "dance"
         desc = "dance <a:AnimeDance:1181309079948361888>"
@@ -130,7 +130,7 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
         
     @commands.hybrid_command(name="feed", aliases=["cookie"])
-    async def lpfeed(self, ctx, *, user):
+    async def feed(self, ctx, *, user):
         """Send some food/cookie"""
         imgtype = "feed"
         desc = "yummy cookie"
@@ -139,7 +139,7 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
 
     @commands.hybrid_command(name="happy")
-    async def lphappy(self, ctx):
+    async def happy(self, ctx):
         """Don't worry, be happy"""
         imgtype = "happy"
         desc = "**{0}** is happy".format(ctx.author.mention)
@@ -149,7 +149,7 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
         
     @commands.hybrid_command(name="hugs", aliases=["hug"])
-    async def lphug(self, ctx, *, user):
+    async def hug(self, ctx, *, user):
         """Send a hug"""
         desc = "hug"
         src = self.purrbotApi(desc, 1, 60, "gif", "gif")
@@ -157,7 +157,7 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
         
     @commands.hybrid_command(name="kiss")
-    async def lpkiss(self, ctx, *, user):
+    async def kiss(self, ctx, *, user):
         """Send a kiss"""
         desc = "kiss"
         src = self.purrbotApi(desc, 1, 60, "gif", "gif")
@@ -165,23 +165,15 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
         
     @commands.hybrid_command(name="lick")
-    async def lplick(self, ctx, *, user):
+    async def lick(self, ctx, *, user):
         """Send a lick"""
         desc = "lick"
         src = self.purrbotApi(desc, 1, 16, "gif", "gif")
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
         
-    @commands.hybrid_command(name="neko")
-    async def lpneko(self, ctx, *, user):
-        """Send a neko"""
-        desc = "neko"
-        src = self.purrbotApi(desc, 1, 20, "gif", "gif")
-        e = await self.buildEmbed(ctx, desc, src, user)
-        await ctx.send(embed=e)
-        
     @commands.hybrid_command(name="nom", aliases=["bite"])
-    async def lpnom(self, ctx, *, user):
+    async def nom(self, ctx, *, user):
         """Send a nom
         
         The old command for feeding a user has moved to `[p]feed`"""
@@ -191,7 +183,7 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
         
     @commands.hybrid_command(name="pat")
-    async def lppat(self, ctx, *, user):
+    async def pat(self, ctx, *, user):
         """Send a pat"""
         desc = "pat"
         src = self.purrbotApi(desc, 1, 20, "gif", "gif")
@@ -199,7 +191,7 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
         
     @commands.hybrid_command(name="poke")
-    async def lppoke(self, ctx, *, user):
+    async def poke(self, ctx, *, user):
         """Send a poke"""
         desc = "poke"
         src = self.purrbotApi(desc, 1, 20, "gif", "gif")
@@ -207,19 +199,27 @@ class Action(commands.GroupCog):
         await ctx.send(embed=e)
         
     @commands.hybrid_command(name="slap")
-    async def lpslap(self, ctx, *, user):
+    async def slap(self, ctx, *, user):
         """Send a slap"""
         desc = "slap"
         src = self.purrbotApi(desc, 1, 20, "gif", "gif")
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
+
+    # @commands.hybrid_command(name="neko")
+    # async def neko(self, ctx, *, user):
+    #     """Send a neko"""
+    #     desc = "neko"
+    #     src = self.purrbotApi(desc, 1, 20, "gif", "gif")
+    #     e = await self.buildEmbed(ctx, desc, src, user)
+    #     await ctx.send(embed=e)
         
-    @commands.hybrid_command(name="yuri")
-    @commands.is_nsfw()
-    async def lpyuri(self, ctx, *, user):
-        """Send a yuri"""
-        desc = "yuri"
-        req = requests.get("https://purrbot.site/api/img/nsfw/yuri/gif").json()
-        src = req["link"]
-        e = await self.buildEmbed(ctx, desc, src, user)
-        await ctx.send(embed=e)
+    # @commands.hybrid_command(name="yuri")
+    # @commands.is_nsfw()
+    # async def yuri(self, ctx, *, user):
+    #     """Send a yuri"""
+    #     desc = "yuri"
+    #     req = requests.get("https://purrbot.site/api/img/nsfw/yuri/gif").json()
+    #     src = req["link"]
+    #     e = await self.buildEmbed(ctx, desc, src, user)
+    #     await ctx.send(embed=e)
