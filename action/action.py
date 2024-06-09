@@ -7,8 +7,8 @@ import random
 import requests
 import json
 
-class Loveplay(commands.Cog):
-    """Send love to other members of the server with hugs, kisses, etc."""
+class Action(commands.GroupCog):
+    """Send an action to other members of the server with hugs, kisses, etc."""
 
     def __init__(self):
         self.config = Config.get_conf(self, identifier=806715409318936616)
@@ -62,21 +62,19 @@ class Loveplay(commands.Cog):
 
     # Bot Commands
  
-    @commands.command(name="loveplay", aliases=["lp"])
+    @commands.command(name="action", aliases=["loveplay", "lp"])
     async def lpmain(self, ctx, action, description, *, user):
         """Send a custom lovely reaction to someone!
 
-        Type  **`[p]help Loveplay`**  to see built-in reactions.
+        Type  **`[p]help Action`**  to see built-in reactions.
 
         **`action`**  :  A sfw gif action from [Purrbot Image API](https://docs.purrbot.site/api/)
-        **`description`**  :  @you gives @user a *"description"* (quotes if multi-word)
-
-        [Loveplay Documentation >](https://coffeebank.github.io/coffee-cogs/loveplay)"""
+        **`description`**  :  @you gives @user a *"description"* (quotes if multi-word)"""
         src = self.purrbotApi(action, 1, 20, "gif", "gif")
         e = await self.buildEmbed(ctx, description, src, user)
         await ctx.send(embed=e)
  
-    @commands.command(name="angry")
+    @commands.hybrid_command(name="angry")
     async def lpangry(self, ctx, *, user):
         """Send a angry face"""
         imgtype = "angry"
@@ -85,7 +83,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
 
-    @commands.command(name="blush")
+    @commands.hybrid_command(name="blush")
     async def lpblush(self, ctx, *, user):
         """Send a blush"""
         imgtype = "blush"
@@ -94,7 +92,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
 
-    @commands.command(name="comfy")
+    @commands.hybrid_command(name="comfy")
     async def lpcomfy(self, ctx):
         """Get comfy"""
         imgtype = "comfy"
@@ -103,7 +101,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, "", src, None, desc)
         await ctx.send(embed=e)
     
-    @commands.command(name="cry", aliases=["sob"])
+    @commands.hybrid_command(name="cry", aliases=["sob"])
     async def lpcry(self, ctx):
         """Have a little cry"""
         imgtype = "cry"
@@ -113,7 +111,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, "", src, None, desc)
         await ctx.send(embed=e)
 
-    @commands.command(name="cuddle", aliases=["snuggle"])
+    @commands.hybrid_command(name="cuddle", aliases=["snuggle"])
     async def lpcuddle(self, ctx, *, user):
         """Send a cuddle"""
         imgtype = "cuddle"
@@ -122,7 +120,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
 
-    @commands.command(name="dance")
+    @commands.hybrid_command(name="dance")
     async def lpdance(self, ctx, *, user):
         """Send a dance"""
         imgtype = "dance"
@@ -131,7 +129,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
         
-    @commands.command(name="feed", aliases=["cookie"])
+    @commands.hybrid_command(name="feed", aliases=["cookie"])
     async def lpfeed(self, ctx, *, user):
         """Send some food/cookie"""
         imgtype = "feed"
@@ -140,7 +138,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
 
-    @commands.command(name="happy")
+    @commands.hybrid_command(name="happy")
     async def lphappy(self, ctx):
         """Don't worry, be happy"""
         imgtype = "happy"
@@ -150,7 +148,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, "", src, None, desc)
         await ctx.send(embed=e)
         
-    @commands.command(name="hugs", aliases=["hug"])
+    @commands.hybrid_command(name="hugs", aliases=["hug"])
     async def lphug(self, ctx, *, user):
         """Send a hug"""
         desc = "hug"
@@ -158,7 +156,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
         
-    @commands.command(name="kiss")
+    @commands.hybrid_command(name="kiss")
     async def lpkiss(self, ctx, *, user):
         """Send a kiss"""
         desc = "kiss"
@@ -166,7 +164,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
         
-    @commands.command(name="lick")
+    @commands.hybrid_command(name="lick")
     async def lplick(self, ctx, *, user):
         """Send a lick"""
         desc = "lick"
@@ -174,7 +172,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
         
-    @commands.command(name="neko")
+    @commands.hybrid_command(name="neko")
     async def lpneko(self, ctx, *, user):
         """Send a neko"""
         desc = "neko"
@@ -182,7 +180,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
         
-    @commands.command(name="nom", aliases=["bite"])
+    @commands.hybrid_command(name="nom", aliases=["bite"])
     async def lpnom(self, ctx, *, user):
         """Send a nom
         
@@ -192,7 +190,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, "yummy nom <a:vampynom:1181294862599987360>", src, user)
         await ctx.send(embed=e)
         
-    @commands.command(name="pat")
+    @commands.hybrid_command(name="pat")
     async def lppat(self, ctx, *, user):
         """Send a pat"""
         desc = "pat"
@@ -200,7 +198,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
         
-    @commands.command(name="poke")
+    @commands.hybrid_command(name="poke")
     async def lppoke(self, ctx, *, user):
         """Send a poke"""
         desc = "poke"
@@ -208,7 +206,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
         
-    @commands.command(name="slap")
+    @commands.hybrid_command(name="slap")
     async def lpslap(self, ctx, *, user):
         """Send a slap"""
         desc = "slap"
@@ -216,7 +214,7 @@ class Loveplay(commands.Cog):
         e = await self.buildEmbed(ctx, desc, src, user)
         await ctx.send(embed=e)
         
-    @commands.command(name="yuri")
+    @commands.hybrid_command(name="yuri")
     @commands.is_nsfw()
     async def lpyuri(self, ctx, *, user):
         """Send a yuri"""
